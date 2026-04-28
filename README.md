@@ -16,5 +16,5 @@ $ ./main
 ```
 
 # Credits
-Deanna Hohn(DEC): Author of the cat bitmap
+Deanna Hohn(DEC): Author of the cat bitmap \
 @BarkyTheDog - [catclock](https://github.com/BarkyTheDog/catclock): Project I've stolen the cat bitmap from
