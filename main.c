@@ -50,18 +50,24 @@ int main(void) { // @![GREEN]@![SHELL,cc -o main main.c -lraylib -lm && ./main,B
         float ty = sin((M_PI-2)*(sin(t)+1)*.5+1);
         DrawLineEx((Vector2) {75, 207}, (Vector2) {75+tx*88, 207+ty*88}, 3, BLACK);
         float ss = (float)ctm->tm_sec/60.;
-        float ms = (float)ctm->tm_min/60.;
-        float hs = fmod((float)ctm->tm_hour, 12.)/12.;
+        float ms = ((float)ctm->tm_min+1.)/60.;
+        float hs = ((float)ctm->tm_hour+1.)/12.;
         float x,y;
         x = sin(ss*M_PI*2);
         y = -cos(ss*M_PI*2);
-        DrawLineEx((Vector2) {73,149}, (Vector2) {73+x*14, 149+y*14}, 2, RED);
+        DrawLineEx((Vector2) {73,149}, (Vector2) {73+x*20, 149+y*20}, 2, RED);
         x = sin(ms*M_PI*2);
         y = -cos(ms*M_PI*2);
-        DrawLineEx((Vector2) {73,149}, (Vector2) {73+x*14, 149+y*14}, 3, GREEN);
+        DrawLineEx((Vector2) {73,149}, (Vector2) {73+x*20, 149+y*20}, 3, GREEN);
         x = sin(hs*M_PI*2);
         y = -cos(hs*M_PI*2);
-        DrawLineEx((Vector2) {73,149}, (Vector2) {73+x*8, 149+y*8}, 3, BLUE);
+        DrawLineEx((Vector2) {73,149}, (Vector2) {73+x*12, 149+y*12}, 3, BLUE);
+
+        for (int a = 0; a < 30; ++a) {
+            x = sin((float)a/30.*M_PI*2);
+            y = -cos((float)a/30.*M_PI*2);
+            DrawLine(75+x*17,151+y*24,75+x*20,151+y*27, BLACK);
+        }
         EndDrawing();
     }
     return 0;
