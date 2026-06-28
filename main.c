@@ -49,9 +49,12 @@ int main(void) { // @![GREEN]@![SHELL,cc -o main main.c -lraylib -lm && ./main,B
         float tx = cos((M_PI-2)*(sin(t)+1)*.5+1);
         float ty = sin((M_PI-2)*(sin(t)+1)*.5+1);
         DrawLineEx((Vector2) {75, 207}, (Vector2) {75+tx*88, 207+ty*88}, 3, BLACK);
-        float ss = (float)ctm->tm_sec/60.;
-        float ms = ((float)ctm->tm_min+1.)/60.;
-        float hs = ((float)ctm->tm_hour+1.)/12.;
+
+        float rr = ctm->tm_sec+60*(ctm->tm_min+12*ctm->tm_hour);
+
+        float ss = fmodf(rr, 60)/60;
+        float ms = fmodf(rr/60, 60)/60;
+        float hs = fmodf(rr/3600, 12)/12;
         float x,y;
         x = sin(ss*M_PI*2);
         y = -cos(ss*M_PI*2);
